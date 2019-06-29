@@ -1,0 +1,311 @@
+/**** Global Variables ****/
+/**** Colors ****/
+$white_color:#FFFFFF;
+$black_color:#000000;
+$link_color: #E49B34;
+$link_hover: #d4861a;
+
+$base-color: #666666;
+$base-color1: #a4a060;
+$button-color: #E98537;
+$button-hover: #E98537;
+
+$head-font: 'Lato';
+$sub-head-font: 'Arial';
+$paragraph-font: 'Arctica';
+
+$head-font-size: 34px;
+$sub-head-font-size: 24px;
+$paragraph-font-size: 14px;
+
+$head-font-weight: 800;
+$sub-head-font-weight: 600;
+$paragraph-font-weight: 400;
+
+$head-line-height: 34px;
+$sub-head-line-height: 24px;
+$paragraph-line-height: 14px;
+
+
+/********************** fonts extends ****************/
+%heading-font{
+    font-family: $head-font;
+    font-size: $head-font-size;
+    font-weight: $head-font-weight;
+    line-height: $head-line-height;
+}
+
+%sub-heading-font{
+    font-family: $sub-head-font;
+    font-size: $sub-head-font-size;
+    font-weight: $sub-head-font-weight;
+    line-height: $sub-head-line-height;
+}
+
+%paragraph-heading-font{
+    font-family: $paragraph-font;
+    font-size: $paragraph-font-size;
+    font-weight: $paragraph-font-weight;
+    line-height: $paragraph-line-height;
+}
+
+/**** Media Screen Sizes ****/
+$mobile_width:"only screen and (min-width: 300px) and (max-width:691px)";
+$tablet_width:"only screen and (min-width: 692px) and (max-width:991px)";
+$laptop_width:"only screen and (min-width: 992px) and (max-width:1200px)";
+$desktop_width:"only screen and (min-width: 992px)";
+$retina_display:"only screen and (-webkit-min-device-pixel-ratio: 2),only screen and (min--moz-device-pixel-ratio: 2),only screen and (-o-min-device-pixel-ratio: 2/1),only screen and (min-device-pixel-ratio: 2),only screen and (min-resolution: 192dpi),only screen and (min-resolution: 2dppx)";
+$mac-device:"not all and (min-resolution:.001dpcm)";
+
+
+
+/**** Extends ****/
+
+/* For Hideing */
+%hide {
+    display: none !important;
+}
+%hide-mobile {
+    @media #{$mobile_width}{
+        display: none !important;
+    }
+}
+%hide-tablet {
+    @media #{$tablet_width}{
+        display: none !important;
+    }
+}
+%hide-laptop {
+    @media #{$laptop_width}{
+        display: none !important;
+    }
+}
+
+/* For Blocking */
+
+%show {
+    display: block !important;
+}
+%show-mobile {
+    @media #{$mobile_width}{
+        display: block !important;
+    }
+}
+%show-tablet {
+    @media #{$tablet_width}{
+        display: block !important;
+    }
+}
+%show-laptop {
+    @media #{$laptop_width}{
+        display: block !important;
+    }
+}
+
+/* Align Center*/
+
+%text-center {
+   text-align: center !important;
+}
+
+%text-center-mobile {
+    @media #{$mobile_width}{
+        text-align: center !important;
+    }
+}
+%text-center-tablet {
+    @media #{$tablet_width}{
+        text-align: center !important;
+    }
+}
+%text-center-laptop {
+    @media #{$laptop_width}{
+        text-align: center !important;
+    }
+}
+
+
+/* Align Justify*/
+
+%text-justify {
+   text-align: justify !important;
+}
+
+%text-justify-mobile {
+    @media #{$mobile_width}{
+        text-align: justify !important;
+    }
+}
+%text-justify-tablet {
+    @media #{$tablet_width}{
+        text-align: justify !important;
+    }
+}
+%text-justify-laptop {
+    @media #{$laptop_width}{
+        text-align: justify !important;
+    }
+}
+%x-scroll-mobile{
+    @media #{$mobile_width}{
+        overflow-x: auto !important;
+    }
+}
+%table-xs{
+    @media #{$mobile_width} {
+        display: flex;
+        white-space: nowrap;
+        overflow-x: scroll;
+    }
+}
+
+%vertical-middle{
+    display: flex;
+    align-items: center;
+}
+/********************** customize tages ********************/
+
+/**** Mixins ****/
+/* For margin & Padding */
+@mixin space($property,$side, $value) {
+   $side1: null;
+   $side2: null;
+    @each $prop in $property {
+       @if $side == t{
+          $side: top; 
+        }
+        @else if $side == r{
+          $side: right; 
+        }
+        @else if $side == b{
+          $side: bottom; 
+        }
+        @else if $side == l{
+          $side: left; 
+        }
+        @else if $side == tb or $side == bt{
+          $side1: top;
+          $side2: bottom; 
+        }
+        @else if $side == lr or $side == rl{
+          $side1: left;
+          $side2: right;
+        }
+      @if $property == m {
+        @if $side1 != null or $side2 != null{
+          margin-#{$side1}: $value;
+          margin-#{$side2}: $value;
+        }
+        @else if $side == all {
+          margin: $value;
+        }
+        @else{
+           margin-#{$side}: $value;
+        }
+      }
+      @if $property == p {
+        @if $side1 != null or $side2 != null{
+          padding-#{$side1}: $value;
+          padding-#{$side2}: $value;
+        }
+        @else if $side == all {
+          padding: $value;
+        }
+        @else{
+           padding-#{$side}: $value;
+        }
+      } 
+    }
+}
+@mixin multi-padding($padding-top:null, $padding-right:null, $padding-bottom:null, $padding-left:null){
+    padding-left: $padding-left;
+    padding-top: $padding-top;
+    padding-right: $padding-right;
+    padding-bottom: $padding-bottom;
+}
+
+@mixin multi-margin($margin-top:null, $margin-right:null, $margin-bottom:null, $margin-left:null){
+    margin-left: $margin-left;
+    margin-top: $margin-top;
+    margin-right: $margin-right;
+    margin-bottom: $margin-bottom;
+}
+@mixin grad($type,$where, $color-stops... ) { 
+    @if $type == 'l' {
+        background: nth(nth($color-stops, 1), 1);
+        background: -webkit-linear-gradient(legacy-direction($where), $color-stops);
+        background: linear-gradient($where, $color-stops);
+        background: -moz-linear-gradient($where, $color-stops);
+        background: -webkit-linear-gradient($where, $color-stops);
+        background: -o-linear-gradient($where, $color-stops);
+        background: -ms-linear-gradient($where, $color-stops);
+        background: linear-gradient($where, $color-stops);
+
+    }
+      @if $type == 'r' {
+        background: nth(nth($color-stops, 1), 1);
+        background: -webkit-radial-gradient(legacy-direction($where), $color-stops);
+        background: radial-gradient($where, $color-stops);
+        background: -moz-linear-gradient($where, $color-stops);
+        background: -webkit-linear-gradient($where, $color-stops);
+        background: -o-linear-gradient($where, $color-stops);
+        background: -ms-linear-gradient($where, $color-stops);
+        background: linear-gradient($where, $color-stops);
+    }
+}
+
+/******* change Order Of section in mobile *********/
+
+%flex-mobile{
+    @media #{$mobile_width}{
+       display: flex;
+        flex-direction: column;
+    }
+}
+@mixin assing-order($order: null){
+    @media #{$mobile_width}{
+        order: $order;
+    }
+}
+
+
+/************** extends from class ****************/
+%padding-none-xs {
+    @media #{$mobile_width} {
+        @include multi-padding(0px !important, 0px !important, 0px !important, 0px !important);
+    }
+}
+%padding-none-sm {
+    @media #{$tablet_width} {
+        @include multi-padding(0px !important, 0px !important, 0px !important, 0px !important);
+    }
+}
+.text-center-xs{
+    @extend %text-center-mobile;
+    ul{
+        @media #{$mobile_width} {
+            text-align: left;
+        }
+    }
+}
+.text-justify-xs{
+    @extend %text-justify-mobile;
+}
+
+/*****************  custom classes **************/
+.custom_ff{
+    font-family: custom !important;
+}
+::-webkit-scrollbar {/* width */
+    width: 6px;
+  }
+::-webkit-scrollbar-track {/* Track */
+background: white; 
+}
+::-webkit-scrollbar-thumb {/* Handle */
+background: linear-gradient(30deg,#8FC74A,#FFDE3D,#ee414b);
+border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+background: linear-gradient(120deg,#8FC74A,#FFDE3D,#ee414b);
+}
